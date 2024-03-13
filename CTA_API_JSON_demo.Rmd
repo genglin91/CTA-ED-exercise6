@@ -43,6 +43,29 @@ cat_facts
 
 
 # AIC API
+
+### API secret keys and environment 
+Now let's say we're working with more intricate APIs, where we need to request API access from the platform. If our request is accepted, then we would get an API key and a client ID (typically). It is usually a condition for getting an API key that it be kept secure and its usage restricted to the individual researcher's use. That implies that *you cannot hardcode your API key into your script* and you cannot share it on e.g. Github. But you still need R to know it so you can run and knit your code. The best practice to deal with this is to store your API key information _locally_ in a local environment file.
+
+```{r}
+# The below command create an .Renviron file to store locally on your computer but never share on Github or anywhere
+usethis::edit_r_environ()
+```
+Once you've created an .Renviron file you can populate it with your very own secret API key and client. It might look something like this:
+```{r, eval=FALSE}
+NAME="Marion Lieutaud"
+APIKEY="xxxxxxxxx"
+```
+
+Then save your .Renviron file and restart RStudio
+Once you've done that, you should be able to access your environment data in the following way
+```{r}
+Sys.getenv('NAME')
+# This should return "Marion Lieutaud" in my case
+```
+
+Now when 
+
 ### Artwork Search API
 
 Loading packages:

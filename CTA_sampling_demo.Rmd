@@ -39,7 +39,8 @@ relevant_elements
 If we want to return the text without HMTL tags, we can use the function "html_text()". For example, the first element has the following text:
 
 ```{r}
-html_text(relevant_elements[[1]])
+html_text(relevant_elements[[3]])
+html_text(relevant_elements)
 ```
 
 We can return the texts of all paragraphs contained in the list with a loop:
@@ -87,11 +88,9 @@ Lastly, when inspecting an element and copying the CSS selector in your browser,
 Scraping with this CSS selector yields the correct element from our website:
 
 ```{r, eval=FALSE, echo=TRUE}
-relevant_elements <- html_elements(html, css = 'tba')
+relevant_elements <- html_elements(html, css = '.division-two > p:nth-child(2)')
 html_text(relevant_elements[[1]])
 ```
-
-
 
 
 
@@ -171,6 +170,7 @@ html <- read_html(url)
 tables <- html_table(html, fill=TRUE)
 class(tables)
 length(tables)
+print(tables)
 ```
 
 The function returns 10 different tables (checked 12/03/2024). The option `fill=TRUE` is used because some of the tables appear to have incomplete rows.
