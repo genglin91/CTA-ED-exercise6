@@ -52,7 +52,7 @@ str(tab)
 # Website only had one table -> list of length 1 containing the dataframe
 
 # Save the dataframe (tibble)
-social_security_data <- tab[[1]]
+social_security_data <- tab[[1]] #list, use double dataset
 social_security_data <- as_tibble(social_security_data)
 social_security_data
 ```
@@ -72,6 +72,9 @@ colnames(social_security_data) <- c('year', 'male', 'female', 'total')
 Now we can plot to see how the number of people applying for a Social Security Number in the US has increased over time (using `ggplot2` requires the data to be in a tidy long format):
 
 ```{r}
+#long variable - column on date - multiple lines for the same person
+#wide variable - column on individual
+
 # Pivot longer function
 social_security_data_long <- pivot_longer(data = social_security_data[, 1:3],
   cols = c("male", "female"), names_to = "sex", values_to = "individuals")
